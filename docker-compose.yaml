@@ -1,0 +1,15 @@
+services:
+  postgres:
+    image: bitnami/postgresql
+    container_name: db_ecommerce
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRESQL_USERNAME=postgres
+      - POSTGRESQL_PASSWORD=secret
+      - POSTGRESQL_DATABASE=db_ecommerce
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -d ecommerce -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
