@@ -35,7 +35,7 @@ Este comando irá:
 - Criar um container PostgreSQL chamado `db_ecommerce`
 - Expor a porta `5432`
 - Criar o banco de dados `db_ecommerce`
-- Configurar as credenciais padrão (usuário: `postgres`, senha: `secret`)
+- Configurar as credenciais padrão (usuário: `matheus`, senha: `secret`)
 
 ### 2. Executar a aplicação
 
@@ -68,7 +68,7 @@ http://localhost:8080
 As configurações do banco de dados estão localizadas em `src/main/resources/application.yaml`:
 
 - **URL:** `jdbc:postgresql://localhost:5432/db_ecommerce`
-- **Usuário:** `postgres`
+- **Usuário:** `matheus`
 - **Senha:** `secret`
 - **Porta:** `5432`
 
