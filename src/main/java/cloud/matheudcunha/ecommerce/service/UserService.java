@@ -1,0 +1,41 @@
+package cloud.matheudcunha.ecommerce.service;
+
+
+import cloud.matheudcunha.ecommerce.controller.dto.CreateUserDto;
+import cloud.matheudcunha.ecommerce.entity.BillingAddressEntity;
+import cloud.matheudcunha.ecommerce.entity.UserEntity;
+import cloud.matheudcunha.ecommerce.repository.BillingAddressRepository;
+import cloud.matheudcunha.ecommerce.repository.UserRepository;
+import org.springframework.stereotype.Service;
+
+@Service
+public class UserService {
+
+    private final UserRepository userRepository;
+    private final BillingAddressRepository billingAddressRepository;
+
+    public UserService(
+            UserRepository userRepository,
+            BillingAddressRepository billingAddressRepository
+    ) {
+        this.userRepository = userRepository;
+        this.billingAddressRepository = billingAddressRepository;
+    }
+
+    public UserEntity createUser(CreateUserDto dto){
+
+        var billingAddress = new BillingAddressEntity();
+        billingAddress.setAddress(dto.address());
+        billingAddress.setComplement(dto.complement());
+        billingAddress.setNumber(dto.number());
+
+        var savedBillingAddress = this.billingAddressRepository.save(billingAddress);
+
+        var user = new UserEntity();
+        user.setfullName(dto.fullName());
+        user.setBillingAddress(savedBillingAddress);
+
+        return this.userRepository.save(user);
+    }
+
+}

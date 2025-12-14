@@ -39,4 +39,12 @@ public class UserEntity {
     public void setfullName(String fullName) {
         this.fullName = fullName;
     }
+
+    public BillingAddressEntity getBillingAddress() {
+        return billingAddress;
+    }
+
+    public void setBillingAddress(BillingAddressEntity billingAddress) {
+        this.billingAddress = billingAddress;
+    }
 }
