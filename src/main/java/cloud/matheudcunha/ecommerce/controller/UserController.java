@@ -33,11 +33,19 @@ public class UserController {
     @GetMapping("/{userId}")
     public ResponseEntity<UserEntity> findById(@PathVariable UUID userId){
 
-
         var user = this.userService.findById(userId);
 
         return user.isPresent() ?
                 ResponseEntity.ok(user.get()) :
+                ResponseEntity.notFound().build();
+    }
+
+    @DeleteMapping("/{userId}")
+    public ResponseEntity<Void> deleteUser(@PathVariable UUID userId){
+
+
+        return this.userService.deleteUser(userId) ?
+                ResponseEntity.noContent().build() :
                 ResponseEntity.notFound().build();
     }
 
