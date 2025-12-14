@@ -1,0 +1,14 @@
+Table tb_users {
+  user_id uuid [primary key]
+  full_name varchar
+  billing_address_id bigint
+}
+
+Table tb_billing_address {
+  billing_address_id bigint [primary key]
+  address varchar
+  complement varchar
+  number varchar
+}
+
+Ref: tb_users.billing_address_id - tb_billing_address.billing_address_id
