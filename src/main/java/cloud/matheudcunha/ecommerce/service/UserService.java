@@ -8,6 +8,9 @@ import cloud.matheudcunha.ecommerce.repository.BillingAddressRepository;
 import cloud.matheudcunha.ecommerce.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+import java.util.UUID;
+
 @Service
 public class UserService {
 
@@ -38,4 +41,7 @@ public class UserService {
         return this.userRepository.save(user);
     }
 
+    public Optional<UserEntity> findById(UUID userId) {
+        return this.userRepository.findById(userId);
+    }
 }
