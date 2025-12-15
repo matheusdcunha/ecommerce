@@ -45,9 +45,7 @@ public class UserService {
     public boolean deleteUser(UUID userId) {
         var user = this.userRepository.findById(userId);
 
-        if (user.isPresent()){
-            this.userRepository.delete(user.get());
-        }
+        user.ifPresent(this.userRepository::delete);
 
         return user.isPresent();
     }

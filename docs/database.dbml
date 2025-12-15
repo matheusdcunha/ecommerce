@@ -1,14 +1,38 @@
 Table tb_users {
   user_id uuid [primary key]
-  full_name varchar
-  billing_address_id bigint
+  full_name varchar(255)
+  billing_address_id bigint [ref: - tb_billing_address.billing_address_id, not null]
 }
 
 Table tb_billing_address {
   billing_address_id bigint [primary key]
-  address varchar
-  complement varchar
-  number varchar
+  address varchar(255)
+  complement varchar(255)
+  number varchar(255)
 }
 
-Ref: tb_users.billing_address_id - tb_billing_address.billing_address_id
+Table tb_orders{
+  order_id bitint [primary key]
+  user_id uuid [ref: > tb_users.user_id, not null]
+  order_date timestamp(6)
+  total numeric(38,2)
+}
+
+Table tb_products{
+  product_id bigint [primary key]
+  price numeric
+  product_name varchar(255)
+}
+
+Table tb_order_item{
+  order_id bigint [ref: > tb_orders.order_id, not null]
+  product_id bigint [ref: > tb_products.product_id, not null]
+  quantity integer
+  sale_price numeric(38, 2)
+
+
+  indexes {
+    (order_id, product_id) [pk]
+  }
+
+}
