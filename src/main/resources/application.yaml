@@ -1,6 +1,9 @@
 spring:
   application:
     name: ecommerce
+  sql:
+    init:
+      mode: always
   datasource:
     url: jdbc:postgresql://localhost:5432/db_ecommerce
     username: matheus
@@ -11,3 +14,4 @@ spring:
       ddl-auto: update
     database-platform: org.hibernate.dialect.PostgreSQLDialect
     show-sql: true
+    defer-datasource-initialization: true
