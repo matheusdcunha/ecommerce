@@ -34,5 +34,14 @@ Table tb_order_item{
   indexes {
     (order_id, product_id) [pk]
   }
+}
 
+Table tb_tags{
+  tag_id bigint [primary key]
+  name varchar(255)
+}
+
+Table tb_products_tags{
+  product_id bigint [ref: <> tb_products.product_id, not null]
+  tags_id bigint [ref: <> tb_tags.tag_id, not null]
 }

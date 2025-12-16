@@ -29,17 +29,37 @@ erDiagram
     }
 
     tb_order_item {
-        bigint order_id PK,FK "Parte da PK Composta"
-        bigint product_id PK,FK "Parte da PK Composta"
+        bigint order_id PK "FK"
+        bigint product_id PK "FK"
         integer quantity
         numeric sale_price
     }
 
-    tb_users ||--|| tb_billing_address : "possui"
+    tb_tags {
+        bigint tag_id PK
+        varchar name
+    }
 
-    tb_users ||--o{ tb_orders : "realiza"
+    tb_products_tags {
+        bigint product_id FK
+        bigint tags_id FK
+    }
 
-    tb_orders ||--|{ tb_order_item : "contém"
+%% Relacionamentos
 
-    tb_products ||--o{ tb_order_item : "listado em"
+%% Users - Billing Address (1 para 1)
+    tb_users ||--|| tb_billing_address : possui
+
+%% Users - Orders (1 para N)
+    tb_users ||--o{ tb_orders : realiza
+
+%% Orders - Order Items (1 para N)
+    tb_orders ||--|{ tb_order_item : contem
+
+%% Products - Order Items (1 para N)
+    tb_products ||--o{ tb_order_item : incluido_em
+
+%% Products - Product Tags (Relacionamento N para N via tabela pivo)
+    tb_products ||--|{ tb_products_tags : possui
+    tb_tags ||--|{ tb_products_tags : atribuidas_em
 ```
