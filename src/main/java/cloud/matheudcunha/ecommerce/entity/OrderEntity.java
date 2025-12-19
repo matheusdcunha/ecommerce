@@ -15,7 +15,7 @@ public class OrderEntity {
     @Id
     @Column(name = "order_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long orderId;
 
     @Column(name = "total")
     private BigDecimal total;
@@ -33,12 +33,12 @@ public class OrderEntity {
     public OrderEntity() {
     }
 
-    public Long getId() {
-        return id;
+    public Long getOrderId() {
+        return orderId;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setOrderId(Long orderId) {
+        this.orderId = orderId;
     }
 
     public LocalDateTime getOrderDate() {

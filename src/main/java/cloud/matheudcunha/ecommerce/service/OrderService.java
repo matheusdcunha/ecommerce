@@ -2,11 +2,14 @@ package cloud.matheudcunha.ecommerce.service;
 
 import cloud.matheudcunha.ecommerce.controller.dto.CreateOrderDto;
 import cloud.matheudcunha.ecommerce.controller.dto.OrderItemDto;
+import cloud.matheudcunha.ecommerce.controller.dto.OrderSummaryDto;
 import cloud.matheudcunha.ecommerce.entity.*;
 import cloud.matheudcunha.ecommerce.exception.CreateOrderException;
 import cloud.matheudcunha.ecommerce.repository.OrderRepository;
 import cloud.matheudcunha.ecommerce.repository.ProductRepository;
 import cloud.matheudcunha.ecommerce.repository.UserRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -114,5 +117,18 @@ public class OrderService {
                 .reduce(BigDecimal::add)
                 .orElse(BigDecimal.ZERO);
 
+    }
+
+    public Page<OrderSummaryDto> findAll(Integer page, Integer pageSize) {
+
+        return orderRepository.findAll(PageRequest.of(page, pageSize))
+                .map(orderEntity -> {
+                    return new OrderSummaryDto(
+                            orderEntity.getOrderId(),
+                            orderEntity.getOrderDate(),
+                            orderEntity.getUser().getId(),
+                            orderEntity.getTotal()
+                    );
+                });
     }
 }
