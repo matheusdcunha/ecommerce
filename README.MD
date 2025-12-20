@@ -28,7 +28,7 @@ Antes de iniciar o projeto, certifique-se de ter instalado:
 Para iniciar o banco de dados PostgreSQL, execute o seguinte comando:
 
 ```sh
-docker-compose up -d
+docker-compose up -d db_ecommerce
 ```
 
 Este comando irá:
