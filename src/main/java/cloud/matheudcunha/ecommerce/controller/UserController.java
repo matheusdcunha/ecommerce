@@ -27,7 +27,7 @@ public class UserController {
 
         var user = this.userService.createUser(dto);
 
-        return ResponseEntity.created(URI.create("/users/" + user.getId())).build();
+        return ResponseEntity.created(URI.create("/users/" + user.getUserId())).build();
     }
 
     @GetMapping("/{userId}")

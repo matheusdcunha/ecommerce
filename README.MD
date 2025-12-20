@@ -42,7 +42,7 @@ Este comando irá:
 Você pode executar a aplicação de duas formas:
 
 **Usando Maven Wrapper (recomendado):**
-
+z
 ```sh
 ./mvnw spring-boot:run
 ```
@@ -72,3 +72,14 @@ As configurações do banco de dados estão localizadas em `src/main/resources/a
 - **Senha:** `secret`
 - **Porta:** `5432`
 
+## Documentação
+
+### Rotas
+
+Todas as rotas dessa API podem ser encontradas no arquivo [routes.http](./docs/api/routes.http).
+
+Pode usar a extensão HTTP Client para fazer requisição diretamente do arquivo `.http`.
+
+### Banco de Dados
+
+Os diagramas podem ser encontrados em [`./docs/database`](./docs/database), lá se encontra um diagrama feito em `.MERMAID` no arquivo [DER.MD](./docs/database/DER.MD) e outro feito em `.dbml` no arquivo [database.dbml](./docs/database/database.dbml). 

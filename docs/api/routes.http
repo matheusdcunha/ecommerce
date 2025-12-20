@@ -1,0 +1,49 @@
+@userId = b6eaa856-dfb1-44f3-baeb-a84600de10f3
+
+### Users
+
+###
+POST http://localhost:8080/users
+Content-Type: application/json
+
+{
+  "fullName": "Matheus da Cunha",
+  "address": "Rua Curitiba",
+  "complement": "Fundos",
+  "number": "594"
+}
+
+###
+GET http://localhost:8080/users/{{userId}}
+
+###
+DELETE http://localhost:8080/users/{{userId}}
+
+### Orders
+
+@orderId = 1
+
+###
+POST http://localhost:8080/orders
+Content-Type: application/json
+
+{
+  "userId": "b6eaa856-dfb1-44f3-baeb-a84600de10f3",
+  "items": [
+    {
+      "quantity": 2,
+      "productId": 3
+    },
+    {
+      "quantity": 1,
+      "productId": 1
+    }
+  ]
+}
+
+###
+GET http://localhost:8080/orders
+
+
+###
+GET http://localhost:8080/orders/{{orderId}}

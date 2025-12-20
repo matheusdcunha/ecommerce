@@ -1,10 +1,8 @@
 package cloud.matheudcunha.ecommerce.controller;
 
-import cloud.matheudcunha.ecommerce.controller.dto.ApiResponse;
-import cloud.matheudcunha.ecommerce.controller.dto.CreateOrderDto;
-import cloud.matheudcunha.ecommerce.controller.dto.OrderSummaryDto;
-import cloud.matheudcunha.ecommerce.controller.dto.PaginationResponseDto;
+import cloud.matheudcunha.ecommerce.controller.dto.*;
 import cloud.matheudcunha.ecommerce.service.OrderService;
+import org.apache.coyote.Response;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -30,7 +28,7 @@ public class OrderController {
 
     @GetMapping()
     public ResponseEntity<ApiResponse<OrderSummaryDto>> listOrders(@RequestParam(name = "page", defaultValue = "0") Integer page,
-                                                                   @RequestParam(name = "page", defaultValue = "0") Integer pageSize){
+                                                                   @RequestParam(name = "pageSize", defaultValue = "1") Integer pageSize){
 
         var response = orderService.findAll(page, pageSize);
 
@@ -38,6 +36,17 @@ public class OrderController {
                 response.getContent(),
                 new PaginationResponseDto(response.getNumber(),response.getSize(), response.getTotalElements(), response.getTotalPages())
         ));
+    }
+
+    @GetMapping("/{orderId}")
+    public ResponseEntity<OrderResponseDto> findOrder(@PathVariable Long orderId){
+
+        var order = orderService.findById(orderId);
+
+        return order.isPresent() ?
+                ResponseEntity.ok(OrderResponseDto.fromEntity(order.get())) :
+                ResponseEntity.notFound().build();
+
     }
 
 }

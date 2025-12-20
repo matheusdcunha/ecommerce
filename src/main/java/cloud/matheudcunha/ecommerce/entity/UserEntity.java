@@ -12,7 +12,7 @@ public class UserEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name = "user_id")
-    private UUID id;
+    private UUID userId;
 
     @Column(name = "full_name")
     private String fullName;
@@ -24,12 +24,12 @@ public class UserEntity {
     public UserEntity() {
     }
 
-    public UUID getId() {
-        return this.id;
+    public UUID getUserId() {
+        return this.userId;
     }
 
-    public void setId(UUID id) {
-        this.id = id;
+    public void setUserId(UUID userId) {
+        this.userId = userId;
     }
 
     public String getfullName() {
