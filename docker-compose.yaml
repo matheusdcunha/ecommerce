@@ -1,4 +1,13 @@
 services:
+  ecommerce:
+    build: .
+    container_name: api_ecommerce
+    ports:
+      - "8080:8080"
+    environment:
+      - DB_URL=jdbc:postgresql://db_ecommerce:5432/db_ecommerce
+      - DB_USERNAME=matheus
+      - DB_PASSWORD=secret
   postgres:
     image: bitnami/postgresql
     container_name: db_ecommerce

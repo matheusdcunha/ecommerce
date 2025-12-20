@@ -5,9 +5,9 @@ spring:
     init:
       mode: always
   datasource:
-    url: jdbc:postgresql://localhost:5432/db_ecommerce
-    username: matheus
-    password: secret
+    url: ${DB_URL:jdbc:postgresql://localhost:5432/db_ecommerce}
+    username: ${DB_USERNAME:matheus}
+    password: ${DB_PASSWORD:secret}
     driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:

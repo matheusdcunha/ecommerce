@@ -1,0 +1,12 @@
+target
+.idea
+docs
+.gitattributes
+.gitignore
+.git
+LICENSE
+README.MD
+*/test
+docker-compose.yaml
+Dockerfile
+mvnw.cmd
