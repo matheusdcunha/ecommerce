@@ -2,7 +2,6 @@ package cloud.matheudcunha.ecommerce.controller;
 
 import cloud.matheudcunha.ecommerce.controller.dto.*;
 import cloud.matheudcunha.ecommerce.service.OrderService;
-import org.apache.coyote.Response;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

@@ -1,5 +1,5 @@
 
-FROM amazoncorretto:21-alpine AS builder 
+FROM maven:3.9-eclipse-temurin-21 AS builder
 WORKDIR /app
 
 COPY .mvn/ .mvn
@@ -9,7 +9,7 @@ RUN ./mvnw dependency:go-offline
 COPY src ./src
 RUN ./mvnw clean install -DskipTests
 
-FROM amazoncorretto:21-alpine
+FROM eclipse-temurin:21-jre-alpine
 WORKDIR /app
 
 RUN adduser -D ecommerce
